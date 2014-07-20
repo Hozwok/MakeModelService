@@ -9,6 +9,8 @@ This is an example of how, not carefully protecting its database, autoscout24 re
 
 Feel free to fork and extend this class as as you want.
 
+**Do not forget to allow write permission on file  `makemodels.cache` to improve speed.**
+
 ##Usage
 Open the shell, and do `php example.php`
 
