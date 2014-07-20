@@ -60,6 +60,7 @@ class MakeModelService {
 		
 	}
 
+	//Retrieve all list of make and models
 	public function GetMakeModelList() {
 		return $this->List;
 	}
@@ -118,9 +119,7 @@ class MakeModelService {
 
 		$url = $this->parameter->Url[$this->locale]['ModelLineData'] . "&make=" . $make . "&year=" . $year . $month;
 
-		echo "<br /> Chiamo ". $url;
 		$res  = file_get_contents($url);
-
 
 		if (strlen($res) == 0)
 			return array();
@@ -154,10 +153,8 @@ class MakeModelService {
 		}
 
 		$url = $this->parameter->Url[$this->locale]['VehicleIdentificationData'] . "&make=" . $makeId . '&year=' . $year . $month .'&modelID=' . $modelId . '&bodyTypeID='.$bodyTypeId.'&numberOfDoors='.$noOfDoors;
-echo "<br />Chiamo ". $url;
-		$res  = file_get_contents($url);
 
-		//echo $url;
+		$res  = file_get_contents($url);
 
 		if (strlen($res) == 0)
 			return array();
@@ -205,7 +202,7 @@ echo "<br />Chiamo ". $url;
 	protected function init(){
 		$this->loadMakeModel();
 		$this->loadFuelsAndBodyType();
-		echo "setto il locale con " . $this->parameter->locale;
+
 		$this->SetLocale($this->parameter->locale);
 	}
 
@@ -305,11 +302,9 @@ echo "<br />Chiamo ". $url;
 
 				if (isset($res->$IdModel->c)) { //if the model has child
 					foreach ($res->$IdModel->c as $k => $IdModelChild) { // cycle all child of this model (usually only make like BMW "1 - Series", etc.. )
-						//$IdModelChild =  str_replace("d", '', $IdModelChild);
 						$MakeModels[str_replace("d", '', $IdModelChild)] = $res->$IdModel->t . " - " . $res->$IdModelChild->t;	
 					}
 				} else {
-					//$IdModel =  
 					$MakeModels[str_replace("d", '', $IdModel)] = $res->$IdModel->t;	//no child. Add it directly.
 				}
 
