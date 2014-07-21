@@ -15,8 +15,8 @@ $service = new MakeModelService($params);
 $noOfMake = count($service->GetMakeModelList());
 echo "I've found " . $noOfMake . " make!\n";
 
-echo "Let's search by Make Name ... Like 'BMW'\n";
-$makeId = $service->GetMakeIdByMakeName("Audi"); //Search for BMW .. 
+echo "Let's search by Make Name ... Like 'Audi'\n";
+$makeId = $service->GetMakeIdByMakeName("Audi"); //Search for Audi .. 
 
 //$makeId will be false if no make found, the id found otherwise
 if ($makeId === false) {
@@ -25,7 +25,7 @@ if ($makeId === false) {
 	exit;
 }
 
-echo "Make Id of BMW found! Its id is ". $makeId . "\n";
+echo "Make Id of Audi found! Its id is ". $makeId . "\n";
 
 echo "Let's search Model Line Data!\n";
 // After, we heve to search for the Model Line.
@@ -46,7 +46,7 @@ echo "Take the first model line and get its setup!\n";
 // $modelLine will be an ampty array if nothing found, otherwise will be a multidimensional associative array.
 $firstModel = $modelLine[0]; //Take the first result. 
 
-echo "Model line we are searching for => " . $firstModel["Model"] . "\n";
+echo "Model line we are searching for => " . $firstModel["Model"] . "\n";y
 //Now, we have all information necessary. We can get all info about version / setup of specific model.
 $setup = $service->GetVehicleIdentificationData($makeId, $firstModel["ModelID"], 2013, 1, $firstModel["BodyTypeID"],  $firstModel["NoOfDoors"] ); //Make Id, Year, Month, Body Type Id, N. of doors 
 
